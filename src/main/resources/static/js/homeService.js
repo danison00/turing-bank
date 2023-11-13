@@ -1,6 +1,4 @@
 
-let context = "http://192.168.0.105:8080";
-
 let accountData;
 
 ajax(context+'/api/my-account', "GET", null)

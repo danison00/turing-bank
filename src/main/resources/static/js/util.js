@@ -1,4 +1,4 @@
-let context = "http://192.168.0.105:8080";
+let context = "https://turing-bank.onrender.com/";
 
 function ajax(url, metodo, corpo) {
 

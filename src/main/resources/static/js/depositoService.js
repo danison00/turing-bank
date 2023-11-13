@@ -1,4 +1,3 @@
-let context = "http://192.168.0.105:8080";
 
 function depositCheckData() {
     var accountNumber = document.getElementById("accountNumber").value;

@@ -1,5 +1,3 @@
-const context = "http://192.168.0.105:8080";
-
 
 
 document.addEventListener('DOMContentLoaded', function () {
