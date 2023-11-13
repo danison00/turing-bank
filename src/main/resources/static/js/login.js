@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('username').classList.remove('alert');
         document.getElementById('alert-text').style.visibility = "hidden";
     });
+    document.getElementById("link-criar-conta").href = context +"/criar-conta";
 
 });
 

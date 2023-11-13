@@ -31,6 +31,7 @@ public class SecurityConfig {
 
                                 .authorizeHttpRequests(authorize -> authorize
                                                .requestMatchers("/").permitAll()
+                                               .requestMatchers("/api-public/account").permitAll()
                                                 .requestMatchers("/api-public/**").permitAll()
                                                 .requestMatchers("/img/**", "/js/**", "/css/**").permitAll()
                                                 .requestMatchers("/turing-bank", "/deposito", "/api/transaction/deposit/**", "/api/transaction/deposit").permitAll()

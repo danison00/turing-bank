@@ -68,7 +68,6 @@ function modalAccountCreated(data) {
 
 
 
-    console.log(data);
 
     var meuModal1 = new bootstrap.Modal(document.getElementById('modalAccountCreated'));
     meuModal1.show();
