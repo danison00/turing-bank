@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/turing-bank.css">
+
+    <title>Iniciar</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="card-special">
+            <header class="header">
+                <img src="/img/turing-logo.png" alt="banco Turing" />
+                <span>Grupo Turing Bank</span>
+            </header>
+
+            <button onclick="redirectLogin()" id="entrarButton" class="button">Iniciar</button>
+
+        </div>
+    </div>
+    <div>
+        <footer id="footer">Turing Bank © 2023-2023.
+            <span>Todos direitos reservados - 2023</span>
+        </footer>
+    </div>
+    <script>
+        function redirectLogin(){
+            window.location.href = "http://192.168.0.105:8080/login"
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
+    <script src="/js/login.js"></script>
+    <script src="/js/loginService.js"></script>
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+
+            <header class="header">
+                <img src="/img/turing-logo.png" alt="banco Turing" />
+
+                <span>FAÇA LOGIN NA SUA CONTA</span>
+            </header>
+
+            <div class="form">
+                <div class="inputContainer">
+                    <label>USERNAME</label>
+                    <input class="input" type="text" id="username" placeholder="Usuário" />
+                </div>
+
+                <div class="inputContainer">
+                    <label>PASSWORD</label>
+                    <input class="input" type="password" id="password" placeholder="********" />
+                    <div class="alert-text" id="alert-text">Usuário ou senha inválidos</div>
+                </div>
+
+                <div class="inputContainer">                    
+                    <button class="button" onclick="login()">ENTRAR</button>
+                </div>
+                <div class="container-btn">
+                    <button class="btn-deposito" onclick="telaDeposito()">REALIZAR DEPÓSITO</button>
+                    
+                </div>
+
+                <div class="footer">
+                    <p>Você não possui conta no banco? </p>
+                    <a href="http://192.168.0.105:8080/criar-conta"> Criar conta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

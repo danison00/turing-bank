@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Inter', sans-serif;
+ 
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.container img {
+    width: 240px;
+    border-radius: 50%;
+    height: 160px; 
+    object-fit: cover;
+
+}
+
+.container .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.container .header span {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    padding-top: 15px;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container .form .inputContainer {
+    width: 80%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 8px;
+}
+
+.container .form .inputContainer label {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    margin-bottom: 10px;
+}
+
+.input {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 16px;
+    width: 100%;
+    height: 49px;
+    border: 1px solid #1a5836;
+    border-radius: 12px;
+    margin-bottom: 12px;
+
+}
+
+.container-btn {
+    width: 80%;
+        margin-top: 30px;
+    margin-bottom: 30px;
+}
+.btn-deposito{
+    font-weight: 400;
+    font-size: 16px;
+    padding-top: 30px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #1a5836;
+    border-radius: 12px;
+    width: 100%;
+    color: #1a5836;
+    
+}
+.btn-deposito:hover{
+    color: #178649;
+    border: 1px solid #178649;
+    transition: 0.25s;
+}
+
+
+
+.container .form .button {
+    width: 100%;
+    height: 48px;
+    background:  #1a5836;
+    border-radius: 12px;
+    color: #fff;
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+.container .form .button:hover {
+    cursor: pointer;
+    color: #000000;
+    background-color: #256d4f;
+}
+
+.container .form .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px
+}
+
+.container .form .footer p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+}
+
+.container .form .footer a {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration-line: underline; /*sublinhar o link */
+    color: #1a5836;
+
+}
+.card{
+    width: 35%;
+    height: 90%;
+   
+}
+.alert{
+
+    border: 1px solid red;
+
+}
+.alert-text{
+    font-size: 13px;
+    color: red;
+    visibility: hidden;
+}
+@media only screen and (max-width: 1000px) {
+    .card{
+        width: 65%;
+    }
+}
+@media only screen and (max-width: 650px) {
+    .card{
+        width: 98%;
+        border: none;
+        box-shadow: none;
+    
+    }
+}

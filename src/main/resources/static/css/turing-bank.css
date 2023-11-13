@@ -1,0 +1,116 @@
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    flex-direction: column; 
+    margin: auto;
+    padding: 32px;
+    border-radius: 8px;
+    gap: 16px;
+    width: 90vw;
+    height: 80vh;
+
+}
+.card-special{
+    width: 30%;
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.container img {
+    width: 260px;
+    height: 160px; 
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.container img:hover {
+    transform: scale(1.2);
+}
+
+.container .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.container .header span {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    padding-top: 15px;
+    margin-top: 15px;
+    font-family: 'Inter', sans-serif;
+}
+
+.button {
+    width: 100%; 
+    height: 50px;
+    background:  #1a5836;
+    border-radius: 14px;
+    color: #fff;
+    border: none; 
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-top: 20px;
+
+}
+.container .button:hover {
+    cursor: pointer;
+    color: #000000;
+    background-color: #256d4f;
+}
+
+#footer {
+    width: 100%;
+    height: 2.5rem; 
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+
+}
+a{
+    text-decoration: none;
+}
+@media only screen and (max-width: 1000px){
+    
+    .card-special{
+        width: 40%;
+    }
+    
+}
+@media only screen and (max-width: 850px){
+    
+    .card-special{
+        width: 60%;
+    }
+    
+}
+@media only screen and (max-width: 600px){
+    
+    .card-special{
+        width: 80%;
+    }
+    
+}
+@media only screen and (max-width: 500px){
+    
+    .card-special{
+        width: 90%;
+    }
+    
+}
