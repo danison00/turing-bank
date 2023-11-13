@@ -21,8 +21,8 @@ function depositCheckData() {
 
 function deposito() {
     var accountNumber = document.getElementById("accountNumber").value;
-    var value = document.getElementById("value").value.replace("R$ ", '').replace(",",".").replace(".", "");
-  
+    var value = document.getElementById("value").value.replace("R$ ", '').replace(".", "").replace(",",".") ;
+    
 
     console.log(value);
     var meuModal1 = new bootstrap.Modal(document.getElementById('modalConfirmDeposit'));
