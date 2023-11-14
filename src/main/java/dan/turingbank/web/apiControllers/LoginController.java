@@ -65,7 +65,7 @@ public class LoginController {
         cookie.setPath("/");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
-        response.sendRedirect("http://192.168.0.105:8080/login");
+        response.sendRedirect("/");
 
         return ResponseEntity.ok().build();
     }
