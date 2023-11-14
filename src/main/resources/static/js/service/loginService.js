@@ -4,7 +4,7 @@ function telaDeposito() {
   window.location.href = context + "/deposito";
 }
 
-function login(data) {
+ export function loginSer(data) {
  
 
   return fetch(context + '/api-public/login', {
@@ -41,4 +41,4 @@ function login(data) {
 }
 
 
-export { telaDeposito, login };
+export { telaDeposito };

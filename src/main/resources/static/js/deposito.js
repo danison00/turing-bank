@@ -1,4 +1,4 @@
-import { depositCheckDataServ, depositoServ } from "./depositoService.js";
+import { depositCheckDataServ, depositoServ } from "./service/depositoService.js";
 import { context, sanitazeInputs, alertInputEmpty } from "./util.js";
 
 
@@ -101,11 +101,11 @@ function mascaraMoeda(event) {
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('value').addEventListener('input', mascaraMoeda);
     document.getElementById('deposit-check-data').addEventListener('click', depositCheckData);
-    document.getElementById('accountNumber').addEventListener("click", function () {
+    document.getElementById('accountNumber').addEventListener("change", function () {
         document.getElementById('accountNumber').classList.remove('my-alert');
         document.getElementById('alert-text').style.visibility = "hidden";
     });
-    document.getElementById('value').addEventListener("click", function () {
+    document.getElementById('value').addEventListener("change", function () {
         document.getElementById('value').classList.remove('my-alert');
     });
     document.getElementById('btn-deposito').addEventListener('click', deposito);
