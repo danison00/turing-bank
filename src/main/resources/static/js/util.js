@@ -41,4 +41,9 @@ export function alertInputEmpty(inputs){
     });
 }
 
+export function removeInputAlert(input){
+    input.classList.remove('my-alert');
+
+}
+
 export {context, ajax, sanitazeInputs};

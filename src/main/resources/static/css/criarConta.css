@@ -133,6 +133,12 @@ body {
     visibility: hidden;
 }
 
+.my-alert {
+
+    border: 1px solid red;
+
+}
+
 #step-one,
 #step-two {
     width: 100%;
@@ -204,7 +210,8 @@ body {
     display: block;
     /* transition: opacity 0.5s ease-in-out; */
 }
-#exampleModalLabel{
+
+#exampleModalLabel {
     color: #178649;
 }
 

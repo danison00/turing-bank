@@ -1,16 +1,16 @@
 
-import { context } from "./util.js";
+import { context, sanitazeInputs, alertInputEmpty, removeInputAlert } from "./util.js";
 import { verifyUsernameAlreadyExistsServ, criarContaServ } from "./service/criarContaService.js"
 
 function verifyUsernameAlreadyExists() {
 
-    var username =  document.getElementById('username').value;
+    var username = document.getElementById('username').value;
 
     verifyUsernameAlreadyExistsServ(username).then(notExists => {
         if (notExists) {
             nextStep();
         }
-        else{
+        else {
             treatCssError();
         }
     }).catch(error => {
@@ -21,14 +21,24 @@ function verifyUsernameAlreadyExists() {
 
 function nextStep() {
 
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+
+    var inputsEmpty = sanitazeInputs([username, password]);
+
+    if (inputsEmpty.length > 0) {
+        alertInputEmpty(inputsEmpty);
+        return;
+    }
+
     document.getElementById("step-two").style.display = "block";
     document.getElementById("step-one").style.display = "none";
 }
 
 function backStep() {
-    document.getElementById("name").value ="";
-    document.getElementById("cpf").value ="";
-    document.getElementById("email").value="";
+    document.getElementById("name").value = "";
+    document.getElementById("cpf").value = "";
+    document.getElementById("email").value = "";
     document.getElementById("telephone").value;
     document.getElementById("step-two").style.display = "none";
     document.getElementById("step-one").style.display = "block";
@@ -60,15 +70,30 @@ function modalAccountCreated(data) {
     var meuModal1 = new bootstrap.Modal(document.getElementById('modalAccountCreated'));
     meuModal1.show();
 }
-function criarConta(){
+function criarConta() {
+
+    
+    var name = document.getElementById("name");
+    var cpf = document.getElementById("cpf");
+    var email = document.getElementById("email");
+    var telephone = document.getElementById("telephone");
+
+
+    var inputsEmpty = sanitazeInputs([name, cpf, email, telephone]);
+
+    if (inputsEmpty.length > 0) {
+        alertInputEmpty(inputsEmpty);
+        return;
+    }
+
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    const name = document.getElementById("name").value;
-    const cpf = document.getElementById("cpf").value;
-    const email = document.getElementById("email").value;
-    const telephone = document.getElementById("telephone").value;
-    
+    name = name.value;
+    cpf = cpf.value;
+    email = email.value;
+    telephone = telephone.value;
+
     const data = {
         cpf: cpf,
         name: name,
@@ -90,7 +115,8 @@ function criarConta(){
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('username').addEventListener("click", function () {
+    
+    document.getElementById('username').addEventListener("change", function () {
         document.getElementById('username').classList.remove('my-alert');
         document.getElementById('alert-text').style.visibility = "hidden";
     });
@@ -105,7 +131,28 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("criar-conta").addEventListener("click", criarConta);
     document.getElementById("back-step").addEventListener("click", backStep);
 
+    var username = document.getElementById("username");
+    username.addEventListener("change", removeInputAlert(username));
+
+    var password = document.getElementById("password");
+    password.addEventListener("change", function(){
+        password.classList.remove("my-alert");
+    }); 
     
+    document.getElementById("name").addEventListener("change", function(){
+        document.getElementById("name").classList.remove("my-alert");
+    }); 
+    document.getElementById("cpf").addEventListener("change", function(){
+        document.getElementById("cpf").classList.remove("my-alert");
+    });
+    document.getElementById("email").addEventListener("change", function(){
+        document.getElementById("email").classList.remove("my-alert");
+    });
+    document.getElementById("telephone").addEventListener("change", function(){
+        document.getElementById("telephone").classList.remove("my-alert");
+    }) ;
+
+
 
 });
 
