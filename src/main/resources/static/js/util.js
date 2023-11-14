@@ -1,4 +1,4 @@
-let context = "https://turing-bank.onrender.com";
+let context = "http://192.168.0.105:8080";
 
 function ajax(url, metodo, corpo) {
 
@@ -36,13 +36,23 @@ function sanitazeInputs(inputs){
 }
 
 export function alertInputEmpty(inputs){
+
+    var style = document.createElement("style");
+    style.appendChild(document.createTextNode(".my-alert { border: 1px solid red; }"));
+    document.head.appendChild(style);
+
     inputs.forEach(element => {
-        element.classList.add('my-alert');
+        element.classList.add("my-alert");   //classList.add('my-alert');
     });
 }
 
-export function removeInputAlert(input){
-    input.classList.remove('my-alert');
+export function removeInputAlert(inputs){
+
+    inputs.forEach(element => {
+        element.classList.remove('my-alert');
+    });
+
+   
 
 }
 
