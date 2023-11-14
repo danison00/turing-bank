@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/login.css">
-    <script src="/js/login.js"></script>
-    <script src="/js/loginService.js"></script>
-    <script src="/js/util.js"></script>
+    <script type="module" src="/js/login.js" ></script>
+    <!-- <script type="module" src="/js/loginService.js"></script>
+    <script type="module" src="/js/util.js"></script> -->
+
 
     <title>Login</title>
 </head>
@@ -35,7 +36,7 @@
                 </div>
 
                 <div class="inputContainer">                    
-                    <button class="button" onclick="login()">ENTRAR</button>
+                    <button class="button" id="button-login">ENTRAR</button>
                 </div>
                 <div class="container-btn">
                     <button class="btn-deposito" onclick="telaDeposito()">REALIZAR DEPÓSITO</button>

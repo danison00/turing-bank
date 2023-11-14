@@ -42,7 +42,7 @@ public class UserController {
     // return ResponseEntity.ok().body(newUser);
     // }
 
-    @GetMapping("/username-exists/{username}")
+    @GetMapping("/username-not-exists/{username}")
     public ResponseEntity<?> usernameExists(@PathVariable("username") String username) throws Exception {
 
         if (username == null)
