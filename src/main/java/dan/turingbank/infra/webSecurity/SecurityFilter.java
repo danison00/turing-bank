@@ -7,6 +7,7 @@ import dan.turingbank.model.entity.User;
 import dan.turingbank.service.interfaces.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +30,9 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     @Autowired
     private UserService userService;
+
+    @Value("${expired.authentication}")
+    private int expiredAuthentication;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -75,7 +79,7 @@ public class SecurityFilter extends OncePerRequestFilter {
         // if (cookie != null) {
         Cookie cookie = new Cookie("token-acess", token);
         cookie.setPath("/");
-        cookie.setMaxAge(3*60);
+        cookie.setMaxAge(expiredAuthentication);
         cookie.setHttpOnly(true);
         response.addCookie(cookie);
         // }

@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 import dan.turingbank.model.entity.User;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
@@ -16,6 +18,9 @@ public class TokenService {
 
     String secrety = "abcde";
 
+    @Value("${expired.authentication}")
+    private int expiredAuthentication;
+
     public String generateToken(User user) {
 
         try {
@@ -24,7 +29,7 @@ public class TokenService {
 
             String token = JWT.create().withIssuer("banco-digital-descomplicado")
                     .withSubject(user.getUsername())
-                    .withExpiresAt(LocalDateTime.now().plusMinutes(3).toInstant(ZoneOffset.of("-03:00")))
+                    .withExpiresAt(LocalDateTime.now().plusSeconds(expiredAuthentication).toInstant(ZoneOffset.of("-03:00")))
                     .sign(algorithm);
 
             return token;
