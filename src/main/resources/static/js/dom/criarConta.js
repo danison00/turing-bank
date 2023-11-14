@@ -1,6 +1,6 @@
 
-import { context, sanitazeInputs, alertInputEmpty, removeInputAlert } from "./util.js";
-import { verifyUsernameAlreadyExistsServ, criarContaServ } from "./service/criarContaService.js"
+import { context, sanitazeInputs, alertInputEmpty, removeInputAlert } from "../util.js";
+import { verifyUsernameAlreadyExistsServ, criarContaServ } from "../service/criarContaService.js"
 
 function verifyUsernameAlreadyExists() {
 

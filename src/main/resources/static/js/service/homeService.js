@@ -1,5 +1,5 @@
 
-import {context} from "./util.js"
+import {context, ajax} from "../util.js"
 
 
 export let accountData;
@@ -7,14 +7,18 @@ export let accountData;
 
 export function findData() {
 
-
-    ajax(context + '/api/my-account', "GET", null)
+    return new Promise((resolve, reject) => {  
+        
+        
+        ajax(context + '/api/my-account', "GET", null)
         .then(dados => {
-            accountData = dados;
-            console.log('Dados recebidos:', dados);
-            document.getElementById("nameUser").innerText = "Olá, " + String(dados.name).split(" ")[0] + "!";
 
+            resolve(dados);
+            
+        }).catch(error => {
+            reject(error)
         });
+    });
 }
 
 
@@ -68,7 +72,7 @@ function buscarDados() {
         .then(response => {
 
             if (response.redirected) {
-                window.location.href = response.url;
+                window.location.href = context+"/login";
             }
             else {
 
@@ -90,49 +94,7 @@ function buscarDados() {
             // Aqui você trata erros da requisição
         });
 }
-export function logoutServ() {
-    fetch(context + '/api-public/logout', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-        .then(response => {
-            if (response.ok) {
-
-                if (response.redirected)
-                    window.location.href = response.url;
 
 
-            }
-
-        })
-        .catch(error => {
-
-            alert("Erro na requisição: " + error.message);
-            console.log(error.message);
-        });
-}
-
-
-function ajax(url, metodo, corpo) {
-
-    const config = {
-        method: metodo || 'GET',
-        headers: { 'Content-Type': 'application/json' },
-        body: corpo || null,
-    };
-
-    return fetch(url, config)
-        .then(resposta => {
-            if (!resposta.ok) {
-                throw new Error(`Erro HTTP! Código: ${resposta.status}`);
-            }
-            return resposta.json();
-        })
-        .catch(erro => {
-            console.error('Ocorreu um erro:', erro);
-        });
-}
 
 

@@ -1,5 +1,5 @@
-import { depositCheckDataServ, depositoServ } from "./service/depositoService.js";
-import { context, sanitazeInputs, alertInputEmpty } from "./util.js";
+import { depositCheckDataServ, depositoServ } from "../service/depositoService.js";
+import { context, sanitazeInputs, alertInputEmpty } from "../util.js";
 
 
 

@@ -1,16 +1,26 @@
-import { findData, accountData, logoutServ } from "./homeService.js";
-import {context} from "./util.js"
+import { findData } from "../service/homeService.js";
+import { context } from "../util.js"
 
+let accountData;
 
-findData();
+findData().then(response => {
 
+    if(response.ok) return response.json();
 
+    
+
+}).then(clientData => {
+    accountData = clientData;
+    console.log('Dados recebidos:', clientData);
+    document.getElementById("nameUser").innerText = "Olá, " + String(clientData.name).split(" ")[0] + "!";
+}).catch(error=>{
+
+});
 
 function hiddenBalance() {
     document.getElementById("eye-slash").style.display = "none";
     document.getElementById("eye").style.display = "inline";
     document.getElementById("balance").innerText = "R$ ****"
-
 
 }
 function showBalance() {
@@ -18,7 +28,6 @@ function showBalance() {
     document.getElementById("eye").style.display = "none";
 
     var balance = formattedBalance(String(accountData.balance));
-
     document.getElementById("balance").innerText = balance;
 
 }
@@ -32,11 +41,10 @@ function formattedBalance(balance) {
         valorDepoisVirgula = balance.split(".")[1];
     }
 
-
     var aux1 = balance.split(".")[0];
 
     for (var i = aux1.length; i > 0; i--) {
-        if (i % 3 == 0 &&  aux1.length - i != 0) {
+        if (i % 3 == 0 && aux1.length - i != 0) {
             var part1 = aux1.substring(0, aux1.length - i);
             var part2 = aux1.substring(aux1.length - i);
             aux1 = part1 + "." + part2;
@@ -51,15 +59,16 @@ function formattedBalance(balance) {
 function redirectDeposit() {
     window.location.href = context + "/deposito";
 }
-function logout(){
-    logoutServ();
+function logout() {
+    window.location.href = context + "/api-public/logout";
+
 }
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("eye-slash").addEventListener("click", hiddenBalance);
     document.getElementById("eye").addEventListener("click", showBalance);
     document.getElementById("item-depositar").addEventListener("click", redirectDeposit);
     document.getElementById("btn-logout").addEventListener("click", logout);
-    
+
 
 })

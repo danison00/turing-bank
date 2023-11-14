@@ -1,10 +1,7 @@
 import { context } from "../util.js";
 
-function telaDeposito() {
-  window.location.href = context + "/deposito";
-}
 
- export function loginSer(data) {
+ export function loginServ(data) {
  
 
   return fetch(context + '/api-public/login', {
@@ -39,6 +36,3 @@ function telaDeposito() {
 
     });
 }
-
-
-export { telaDeposito };
