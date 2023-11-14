@@ -5,17 +5,15 @@ let accountData;
 
 findData().then(response => {
 
-    if(response.ok) return response.json();
+    if (response.ok) return response.json();
 
-    
+
 
 }).then(clientData => {
     accountData = clientData;
-    console.log('Dados recebidos:', clientData);
+    console.log('Dados recebidos:', accountData);
     document.getElementById("nameUser").innerText = "Olá, " + String(clientData.name).split(" ")[0] + "!";
-}).catch(error=>{
-
-});
+}).catch(error => {});
 
 function hiddenBalance() {
     document.getElementById("eye-slash").style.display = "none";
@@ -64,11 +62,84 @@ function logout() {
 
 }
 
+function openViewUserData() {
+
+    const divPrincipal = document.createElement('div');
+    divPrincipal.classList.add('user-card-info');
+
+    const divRangeBlack = document.createElement('div');
+    divRangeBlack.classList.add('range-black');
+    const divContentInfo = document.createElement('div');
+    divContentInfo.classList.add('content-info');
+    const informacoes = [
+        'Nome: ' + accountData.name,
+        'Cpf: ' + accountData.cpf,
+        'Email: ' + accountData.email,
+        'Telefone: ' + accountData.telephone,
+        'Numero da conta: ' + accountData.number,
+        'Data de abertura: ' + accountData.openingDate,
+        'Tipo de conta: Corrente'
+    ];
+
+    informacoes.forEach(info => {
+        const paragrafo = document.createElement('p');
+        const span = document.createElement('span');
+        span.textContent = info;
+        paragrafo.appendChild(span);
+        divContentInfo.appendChild(paragrafo);
+    });
+    const divContainerBtn = document.createElement('div');
+    divContainerBtn.classList.add('container-btn');
+
+    const btnVoltar = document.createElement('button');
+    btnVoltar.classList.add('btn-back-home');
+    btnVoltar.id = 'btn-back-home';
+    btnVoltar.textContent = 'Voltar';
+    btnVoltar.onclick = backHome;
+    divContainerBtn.appendChild(btnVoltar);
+
+    divPrincipal.appendChild(divRangeBlack);
+    divPrincipal.appendChild(divContentInfo);
+    addViewInCard2([divPrincipal, divContainerBtn]);
+
+
+}
+
+function openViewExtrato(){
+
+    document.getElementById("card2").checked = true;
+  //  addViewInCard2([]);
+
+}
+
+
+
+function addViewInCard2(html) {
+
+    const divCard2 = document.querySelector(".card2");
+    while (divCard2.firstChild) {
+        divCard2.removeChild(divCard2.firstChild);
+    }
+
+    html.forEach(element => {
+        divCard2.appendChild(element);
+    })
+    document.getElementById("card2").checked = true;
+
+}
+function backHome() {
+    document.getElementById("card1").checked = true;
+}
+
+
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("eye-slash").addEventListener("click", hiddenBalance);
     document.getElementById("eye").addEventListener("click", showBalance);
     document.getElementById("item-depositar").addEventListener("click", redirectDeposit);
     document.getElementById("btn-logout").addEventListener("click", logout);
+
+    document.getElementById("btn-user-data").onclick = openViewUserData;
+    document.getElementById("btn-extrato").onclick = openViewExtrato();
 
 
 })

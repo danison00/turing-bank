@@ -68,9 +68,14 @@ i.bi {
     height: 100%;
 }
 
-.content {
+.cards {
     width: 45%;
     height: 100%;
+}
+.content{
+    height: 100%;
+    width: 45%;
+    overflow: hidden;
 }
 
 .range {
@@ -254,6 +259,30 @@ i.bi {
     height: 100%;
 }
 
+.cards{
+    width: 200%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.my-card{
+    width: 50%;
+    height: 100%;
+    transition: .6s;
+}
+
+
+#card2:checked + .card1{
+    margin-left: -100%;
+}
+#card1:checked + .card2{
+    margin-left: 100%;
+}
+
+#card1, #card2{
+    display: none;
+}
 
 
 
@@ -265,6 +294,7 @@ i.bi {
     .content {
         width: 85%;
     }
+
 
     .row div{
         width: 100px;
@@ -283,6 +313,11 @@ i.bi {
         
         width: 90%;
     }
+    .content {
+        width: 85%;
+
+    }
+  
 
     
 }
@@ -296,7 +331,8 @@ i.bi {
         width: 93%;
 
     }
-
+ 
+  
     .menu-app {
         height: 33%;
     }
@@ -314,4 +350,6 @@ i.bi {
 
     }
 } 
+
+
 
