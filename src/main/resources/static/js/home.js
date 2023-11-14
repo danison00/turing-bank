@@ -1,3 +1,11 @@
+import { findData, accountData, logoutServ } from "./homeService.js";
+import {context} from "./util.js"
+
+
+findData();
+
+
+
 function hiddenBalance() {
     document.getElementById("eye-slash").style.display = "none";
     document.getElementById("eye").style.display = "inline";
@@ -40,3 +48,18 @@ function formattedBalance(balance) {
     return "R$ " + aux1 + "," + valorDepoisVirgula;
 
 }
+function redirectDeposit() {
+    window.location.href = context + "/deposito";
+}
+function logout(){
+    logoutServ();
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+    document.getElementById("eye-slash").addEventListener("click", hiddenBalance);
+    document.getElementById("eye").addEventListener("click", showBalance);
+    document.getElementById("item-depositar").addEventListener("click", redirectDeposit);
+    document.getElementById("btn-logout").addEventListener("click", logout);
+    
+
+})

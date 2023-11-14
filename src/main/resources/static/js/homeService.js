@@ -1,13 +1,21 @@
 
-let accountData;
+import {context} from "./util.js"
 
-ajax(context+'/api/my-account', "GET", null)
-  .then(dados => {
-    accountData = dados;
-    console.log('Dados recebidos:', dados);
-    document.getElementById("nameUser").innerText = "Olá, "+String(dados.name).split(" ")[0]+"!";
-   
-});
+
+export let accountData;
+
+
+export function findData() {
+
+
+    ajax(context + '/api/my-account', "GET", null)
+        .then(dados => {
+            accountData = dados;
+            console.log('Dados recebidos:', dados);
+            document.getElementById("nameUser").innerText = "Olá, " + String(dados.name).split(" ")[0] + "!";
+
+        });
+}
 
 
 function transferir() {
@@ -23,7 +31,7 @@ function transferir() {
         "saveDestination": fav
 
     }
-    fetch(context+'/api/transaction/transfer', {
+    fetch(context + '/api/transaction/transfer', {
         method: 'POST', // ou 'POST', 'PUT', 'DELETE', etc., dependendo do tipo de requisição que você deseja fazer
 
         headers: {
@@ -53,7 +61,7 @@ function buscarDados() {
 
 
 
-    fetch(context+'/api/my-account', {
+    fetch(context + '/api/my-account', {
         method: 'GET', // ou 'POST', 'PUT', 'DELETE', etc., dependendo do tipo de requisição que você deseja fazer
 
     })
@@ -82,8 +90,8 @@ function buscarDados() {
             // Aqui você trata erros da requisição
         });
 }
-function logout() {
-    fetch(context+'/api-public/logout', {
+export function logoutServ() {
+    fetch(context + '/api-public/logout', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -94,7 +102,7 @@ function logout() {
 
                 if (response.redirected)
                     window.location.href = response.url;
-               
+
 
             }
 
@@ -105,28 +113,26 @@ function logout() {
             console.log(error.message);
         });
 }
-function telaDepositar(){
-    window.location.href = context+"/deposito";
-}
+
 
 function ajax(url, metodo, corpo) {
-   
+
     const config = {
-      method: metodo || 'GET',
-      headers: {'Content-Type': 'application/json'},
-      body: corpo || null,
+        method: metodo || 'GET',
+        headers: { 'Content-Type': 'application/json' },
+        body: corpo || null,
     };
-  
+
     return fetch(url, config)
-      .then(resposta => {
-        if (!resposta.ok) {
-          throw new Error(`Erro HTTP! Código: ${resposta.status}`);
-        }
-        return resposta.json();
-      })
-      .catch(erro => {
-        console.error('Ocorreu um erro:', erro);
-      });
+        .then(resposta => {
+            if (!resposta.ok) {
+                throw new Error(`Erro HTTP! Código: ${resposta.status}`);
+            }
+            return resposta.json();
+        })
+        .catch(erro => {
+            console.error('Ocorreu um erro:', erro);
+        });
 }
 
 
