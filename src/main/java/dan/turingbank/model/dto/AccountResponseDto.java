@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 public record AccountResponseDto(
         String name,
+        String cpf,
+        String email,
+        String telephone,
         String number,
         BigDecimal balance,
         String openingDate,

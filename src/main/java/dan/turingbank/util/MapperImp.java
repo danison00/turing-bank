@@ -103,6 +103,9 @@ public class MapperImp implements Mapper {
 
         return new AccountResponseDto(
                 account.getClient().getName(),
+                account.getClient().getCpf(),
+                account.getClient().getEmail(),
+                account.getClient().getTelephone(),
                 account.getNumber(),
                 account.getBalance(),
                 account.getOpeningDate().toString(),
