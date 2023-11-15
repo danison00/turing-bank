@@ -33,7 +33,7 @@ public class SecurityConfig {
                                                .requestMatchers("/").permitAll()
                                                .requestMatchers("/api-public/account").permitAll()
                                                 .requestMatchers("/api-public/**").permitAll()
-                                                .requestMatchers("/img/**", "/js/**", "/css/**").permitAll()
+                                                .requestMatchers("/img/**", "/js/**", "/css/**", "/bootstrap-5.3.2-dist/**").permitAll()
                                                 .requestMatchers("/turing-bank", "/deposito", "/api/transaction/deposit/**", "/api/transaction/deposit").permitAll()
                                                 .requestMatchers("/criar-conta").permitAll()
                                                 .requestMatchers("/api/username-not-exists/**").permitAll()

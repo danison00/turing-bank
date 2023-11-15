@@ -1,5 +1,5 @@
 import { loginServ } from "../service/loginService.js";
-import { context, sanitazeInputs, alertInputEmpty, removeInputAlert } from "../util.js";
+import { context, sanitazeInputs, alertInputEmpty, removeInputAlerts } from "../util.js";
 
 
 
@@ -45,11 +45,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const inputUsername =  document.getElementById('username');
     const alertTextMessage =  document.getElementById('alert-text');
     inputPassword.onclick = () => {
-        removeInputAlert([inputPassword, inputUsername]);
+        removeInputAlerts([inputPassword, inputUsername]);
         alertTextMessage.style.visibility = "hidden";
     };
     username.onclick = () => {
-        removeInputAlert([inputPassword, inputUsername]);
+        removeInputAlerts([inputPassword, inputUsername]);
         alertTextMessage.style.visibility = "hidden";
     };
 

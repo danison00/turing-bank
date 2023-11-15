@@ -1,5 +1,5 @@
 
-import { context, sanitazeInputs, alertInputEmpty, removeInputAlert } from "../util.js";
+import { context, sanitazeInputs, alertInputEmpty, removeInputAlerts } from "../util.js";
 import { verifyUsernameAlreadyExistsServ, criarContaServ } from "../service/criarContaService.js"
 
 function verifyUsernameAlreadyExists() {
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("back-step").addEventListener("click", backStep);
 
     var username = document.getElementById("username");
-    username.addEventListener("change", removeInputAlert(username));
+    username.addEventListener("change", removeInputAlerts([username]));
 
     var password = document.getElementById("password");
     password.addEventListener("change", function(){
