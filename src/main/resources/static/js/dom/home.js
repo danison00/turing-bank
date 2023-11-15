@@ -16,14 +16,14 @@ findData().then(response => {
 }).catch(error => {});
 
 function hiddenBalance() {
-    document.getElementById("eye-slash").style.display = "none";
-    document.getElementById("eye").style.display = "inline";
+    document.getElementById("nao-ver").style.display = "none";
+    document.getElementById("ver").style.display = "";
     document.getElementById("balance").innerText = "R$ ****"
 
 }
 function showBalance() {
-    document.getElementById("eye-slash").style.display = "inline";
-    document.getElementById("eye").style.display = "none";
+    document.getElementById("ver").style.display = "none";
+    document.getElementById("nao-ver").style.display = "block";
 
     var balance = formattedBalance(String(accountData.balance));
     document.getElementById("balance").innerText = balance;
@@ -133,13 +133,13 @@ function backHome() {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("eye-slash").addEventListener("click", hiddenBalance);
-    document.getElementById("eye").addEventListener("click", showBalance);
+    document.getElementById("nao-ver").addEventListener("click", hiddenBalance);
+    document.getElementById("ver").addEventListener("click", showBalance);
     document.getElementById("item-depositar").addEventListener("click", redirectDeposit);
     document.getElementById("btn-logout").addEventListener("click", logout);
 
     document.getElementById("btn-user-data").onclick = openViewUserData;
-    document.getElementById("btn-extrato").onclick = openViewExtrato();
+    document.getElementById("btn-extrato").onclick = openViewExtrato;
 
 
 })
