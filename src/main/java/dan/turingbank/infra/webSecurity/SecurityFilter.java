@@ -2,6 +2,7 @@ package dan.turingbank.infra.webSecurity;
 
 import java.io.IOException;
 
+import dan.turingbank.infra.cookieService.ICookieService;
 import dan.turingbank.infra.tokenJWT.TokenService;
 import dan.turingbank.model.entity.User;
 import dan.turingbank.service.interfaces.UserService;
@@ -13,8 +14,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
-
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -31,8 +30,8 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Autowired
     private UserService userService;
 
-    @Value("${expired.authentication}")
-    private int expiredAuthentication;
+    @Autowired
+    private ICookieService cookieService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -59,41 +58,28 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     protected String recoverToken(HttpServletRequest request) {
 
-        Cookie cookie = findCookie(request.getCookies());
+        Cookie[] cookies = request.getCookies();
 
-        if (cookie != null)
-            return cookie.getValue();
+        if (cookies != null){
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("token-acess"))
+                    return cookie.getValue();
+            }
+        }
 
-        // var authHeader = request.getHeader("Authorization");
 
-        // if(authHeader == null) return null;
-
-        // return authHeader.replace("Bearer ", "");
+    
         return null;
     }
 
     protected void updateToken(HttpServletRequest request, HttpServletResponse response, UserDetails user) {
 
         String token = tokenService.generateToken((User) user);
-        // Cookie cookie = findCookie(request.getCookies());
-        // if (cookie != null) {
-        Cookie cookie = new Cookie("token-acess", token);
-        cookie.setPath("/");
-        cookie.setMaxAge(expiredAuthentication);
-        cookie.setHttpOnly(true);
-        response.addCookie(cookie);
-        // }
 
-    }
+        Cookie cookies[] = cookieService.update(token);
 
-    protected Cookie findCookie(Cookie[] cookies) {
-        if (cookies != null)
-            for (Cookie cookie : cookies)
-                if (cookie.getName().equals("token-acess")) {
+        for (Cookie cookie : cookies)
+            response.addCookie(cookie);
 
-                    return cookie;
-                }
-
-        return null;
     }
 }

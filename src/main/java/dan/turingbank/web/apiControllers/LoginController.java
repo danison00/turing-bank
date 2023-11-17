@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dan.turingbank.infra.cookieService.ICookieService;
 import dan.turingbank.infra.tokenJWT.TokenService;
 import dan.turingbank.model.dto.LoginDto;
 import dan.turingbank.model.dto.LoginResponseDto;
@@ -37,13 +38,11 @@ public class LoginController {
     @Autowired
     private TokenService tokenService;
 
-    @Value("${expired.authentication}")
-    private int expiredAuthentication;
-    
+    @Autowired
+    private ICookieService cookieService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDto user, HttpServletResponse response) {
-
 
         System.out.println(user.toString());
         if (!userService.usernameAlreadyExists(user.username()))
@@ -55,21 +54,22 @@ public class LoginController {
 
         String token = tokenService.generateToken((User) auth.getPrincipal());
 
-        Cookie cookie = new Cookie("token-acess", token);
-        cookie.setPath("/");
-        cookie.setMaxAge(expiredAuthentication);
-        cookie.setHttpOnly(true);
-        response.addCookie(cookie);
+        Cookie[] cookies = cookieService.generate(token);
+
+        for (Cookie cookie : cookies)
+            response.addCookie(cookie);
 
         return ResponseEntity.ok().body(new LoginResponseDto(token));
     }
+
     @GetMapping("/logout")
     public ResponseEntity<?> logout(HttpServletResponse response) throws IOException {
 
-        Cookie cookie = new Cookie("token-acess", "");
-        cookie.setPath("/");
-        cookie.setMaxAge(0);
-        response.addCookie(cookie);
+        Cookie[] cookies = cookieService.remove();
+
+        for (Cookie cookie : cookies)
+            response.addCookie(cookie);
+
         response.sendRedirect("/");
 
         return ResponseEntity.ok().build();
