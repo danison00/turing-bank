@@ -107,8 +107,8 @@ function openViewUserData() {
 
 function openViewExtrato(){
 
-    document.getElementById("card2").checked = true;
-  //  addViewInCard2([]);
+  //  document.getElementById("card2").checked = true;
+  addViewInCard2([]);
 
 }
 
