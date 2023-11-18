@@ -8,10 +8,10 @@ function manipularRota() {
     case "":
       backHome();
       break;
-    case "#data-user":
+    case "/data-user":
       openViewUserData();
       break;
-    case "#history":
+    case "/history":
       openViewExtrato();
       break;
     

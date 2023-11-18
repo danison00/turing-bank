@@ -1,5 +1,6 @@
 import { findData } from "../service/homeService.js";
 import { context } from "../util.js"
+import { generateViewUserData } from "./pagesGenerator.js";
 
 let accountData;
 
@@ -29,6 +30,7 @@ function showBalance() {
     document.getElementById("balance").innerText = balance;
 
 }
+
 function formattedBalance(balance) {
 
     var valorDepoisVirgula;
@@ -54,67 +56,71 @@ function formattedBalance(balance) {
     return "R$ " + aux1 + "," + valorDepoisVirgula;
 
 }
+
 function redirectDeposit() {
-    window.location.href = context + "/deposito";
+    window.location.hash = "deposito";
+   // window.location.href = context + "/deposito";
 }
+
 function logout() {
     window.location.href = context + "/api-public/logout";
 
 }
 
 export function openViewUserData() {
-    window.location.hash = "#data-user";
+    window.location.hash = "/data-user";
 
-    const divPrincipal = document.createElement('div');
-    divPrincipal.classList.add('user-card-info');
+    // const divPrincipal = document.createElement('div');
+    // divPrincipal.classList.add('user-card-info');
 
-    const divRangeBlack = document.createElement('div');
-    divRangeBlack.classList.add('range-black');
-    const divContentInfo = document.createElement('div');
-    divContentInfo.classList.add('content-info');
-    const informacoes = [
-        'Nome: ' + accountData.name,
-        'Cpf: ' + accountData.cpf,
-        'Email: ' + accountData.email,
-        'Telefone: ' + accountData.telephone,
-        'Numero da conta: ' + accountData.number,
-        'Data de abertura: ' + accountData.openingDate,
-        'Tipo de conta: Corrente'
-    ];
+    // const divRangeBlack = document.createElement('div');
+    // divRangeBlack.classList.add('range-black');
+    // const divContentInfo = document.createElement('div');
+    // divContentInfo.classList.add('content-info');
+    // const informacoes = [
+    //     'Nome: ' + accountData.name,
+    //     'Cpf: ' + accountData.cpf,
+    //     'Email: ' + accountData.email,
+    //     'Telefone: ' + accountData.telephone,
+    //     'Numero da conta: ' + accountData.number,
+    //     'Data de abertura: ' + accountData.openingDate,
+    //     'Tipo de conta: Corrente'
+    // ];
 
-    informacoes.forEach(info => {
-        const paragrafo = document.createElement('p');
-        const span = document.createElement('span');
-        span.textContent = info;
-        paragrafo.appendChild(span);
-        divContentInfo.appendChild(paragrafo);
-    });
-    const divContainerBtn = document.createElement('div');
-    divContainerBtn.classList.add('container-btn');
+    // informacoes.forEach(info => {
+    //     const paragrafo = document.createElement('p');
+    //     const span = document.createElement('span');
+    //     span.textContent = info;
+    //     paragrafo.appendChild(span);
+    //     divContentInfo.appendChild(paragrafo);
+    // });
+    // const divContainerBtn = document.createElement('div');
+    // divContainerBtn.classList.add('container-btn');
 
-    const btnVoltar = document.createElement('button');
-    btnVoltar.classList.add('btn-back-home');
-    btnVoltar.id = 'btn-back-home';
-    btnVoltar.textContent = 'Voltar';
-    btnVoltar.onclick = backHome;
-    divContainerBtn.appendChild(btnVoltar);
+    // const btnVoltar = document.createElement('button');
+    // btnVoltar.classList.add('btn-back-home');
+    // btnVoltar.id = 'btn-back-home';
+    // btnVoltar.textContent = 'Voltar';
+    // btnVoltar.onclick = backHome;
+    // divContainerBtn.appendChild(btnVoltar);
 
-    divPrincipal.appendChild(divRangeBlack);
-    divPrincipal.appendChild(divContentInfo);
-    addViewInCard2([divPrincipal, divContainerBtn]);
+    // divPrincipal.appendChild(divRangeBlack);
+    // divPrincipal.appendChild(divContentInfo);
+
+
+
+    addViewInCard2(generateViewUserData(accountData));
 
 
 }
 
 export function openViewExtrato() {
-    window.location.hash = "#history";
+    window.location.hash = "/history";
 
-    //  document.getElementById("card2").checked = true;
-    addViewInCard2([]);
+    document.getElementById("card2").checked = true;
+   // addViewInCard2([]);
 
 }
-
-
 
 function addViewInCard2(html) {
 

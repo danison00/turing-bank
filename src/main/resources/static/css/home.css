@@ -273,6 +273,8 @@ i.bi {
 }
 
 
+
+
 #card2:checked + .card1{
     margin-left: -100%;
 }
