@@ -62,7 +62,8 @@ function logout() {
 
 }
 
-function openViewUserData() {
+export function openViewUserData() {
+    window.location.hash = "#data-user";
 
     const divPrincipal = document.createElement('div');
     divPrincipal.classList.add('user-card-info');
@@ -105,10 +106,11 @@ function openViewUserData() {
 
 }
 
-function openViewExtrato(){
+export function openViewExtrato() {
+    window.location.hash = "#history";
 
-  //  document.getElementById("card2").checked = true;
-  addViewInCard2([]);
+    //  document.getElementById("card2").checked = true;
+    addViewInCard2([]);
 
 }
 
@@ -127,7 +129,8 @@ function addViewInCard2(html) {
     document.getElementById("card2").checked = true;
 
 }
-function backHome() {
+export function backHome() {
+    window.location.hash = "";
     document.getElementById("card1").checked = true;
 }
 
