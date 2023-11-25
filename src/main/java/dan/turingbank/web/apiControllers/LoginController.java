@@ -25,8 +25,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
-@RequestMapping("api-public")
-@CrossOrigin(origins = "*")
+@RequestMapping("/api-public")
 public class LoginController {
 
     @Autowired
@@ -70,7 +69,7 @@ public class LoginController {
         for (Cookie cookie : cookies)
             response.addCookie(cookie);
 
-        response.sendRedirect("/");
+        System.out.println("logout");
 
         return ResponseEntity.ok().build();
     }

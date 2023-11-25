@@ -42,3 +42,7 @@ export function generateViewUserData(accountData) {
 
     return [divPrincipal, divContainerBtn]
 }
+
+export function generatedViewUserData(){
+    
+}

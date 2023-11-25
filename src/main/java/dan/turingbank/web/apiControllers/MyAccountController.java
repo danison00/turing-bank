@@ -35,7 +35,14 @@ public class MyAccountController {
     public ResponseEntity<?> getDataAccount(Authentication authentication) throws Exception {
 
         String username = authentication.getPrincipal().toString();
-        AccountResponseDto accountDto = mapper.fromAccountToAccountResponseDto(accountService.findByUsername(username));
+        var a = accountService.findByUsername(username);
+        AccountResponseDto accountDto = mapper.fromAccountToAccountResponseDto(a);
+        System.out.println("data account send");
+
+        a = accountService.findByUsername("joao");
+        System.out.println(a.getFavorites());
+        a = accountService.findByUsername("danison");
+        System.out.println(a.getFavorites());
 
         return ResponseEntity.ok().body(accountDto);
     }

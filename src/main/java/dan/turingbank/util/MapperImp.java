@@ -62,11 +62,15 @@ public class MapperImp implements Mapper {
     public Transfer fromTransactionDtoToTransaction(TransferRequestDto transactionDto, String username)
             throws Exception {
 
-        Account accountOrigin = accountService.findByUsername(username);
-        Account accountDestination = accountService.findByNumber(transactionDto.accountDestination());
-        BigDecimal value = transactionDto.value();
+      
 
-        return new Transfer(accountOrigin, accountDestination, value, transactionDto.saveDestination());
+            Account accountOrigin = accountService.findByUsername(username);
+            Account accountDestination = accountService.findByNumber(transactionDto.accountDestination());
+            BigDecimal value = transactionDto.value();
+
+            return new Transfer(accountOrigin, accountDestination, value, transactionDto.saveDestination());
+      
+        
 
     }
 
@@ -99,7 +103,7 @@ public class MapperImp implements Mapper {
                 transfer -> transfersSend.add(fromTransferToTransferSendResponseDto(transfer)));
         account.getFavorites().stream().forEach(
                 favorite -> favoritesAccounts
-                        .add(new AccountFavoriteDto(favorite.getClient().getName(), favorite.getNumber())));
+                        .add(new AccountFavoriteDto(favorite.getName(), favorite.getNumber())));
 
         return new AccountResponseDto(
                 account.getClient().getName(),

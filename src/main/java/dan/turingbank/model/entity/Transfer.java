@@ -1,6 +1,9 @@
 package dan.turingbank.model.entity;
 
 import java.math.BigDecimal;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,6 +25,7 @@ public class Transfer extends TransactionAbstract{
     @Transient
     private boolean saveDestination;
     
+    @JsonIgnore
     public Transfer(Account origin, Account destination, BigDecimal value, boolean saveDestination) {
         
         super(destination, value);

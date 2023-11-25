@@ -54,7 +54,7 @@ public class CookieService implements ICookieService {
         cookie1.setMaxAge(0);
                
         cookie2.setPath("/");
-        cookie2.setMaxAge(60);
+        cookie2.setMaxAge(0);
         
         
 

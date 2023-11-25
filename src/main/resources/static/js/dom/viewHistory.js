@@ -1,8 +1,13 @@
 const buttons = document.querySelectorAll(".button");
 let inputs = document.querySelectorAll("input[name='btn']");
-const range = document.querySelector(".range");
+const range = document.querySelector(".range-view-history");
 
-console.log(buttons);
+
+
+
+
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
    
@@ -12,11 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 button.style.color = "";
             })
     
-            button.style.color = "rgba(0, 128, 0, 0.267)";
+            button.style.color = "yellowgreen";
             inputs[index].checked = true;
+            
             if (index == 0) range.style.left = "3%";
-            if (index == 1) range.style.left = "calc(36%";
-            if (index == 2) range.style.left = "calc(70%";
+            if (index == 1) range.style.left = "36%";
+            if (index == 2) range.style.left = "70%";
 
         });
 

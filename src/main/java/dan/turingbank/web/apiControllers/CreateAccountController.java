@@ -34,11 +34,16 @@ public class CreateAccountController {
     @PostMapping
     public ResponseEntity<?> createAccount(@RequestBody CreateAccountRequest createReq) throws Exception {
 
+        System.out.println(createReq);
         Account account = createAccountService.createAccount(createReq);
 
         AccountDataResponseDto accountDataResponse = mapper.fromAccountToAccountDataResponseDto(account);
 
-        return ResponseEntity.ok().body(accountDataResponse);
+        return ResponseEntity.ok().build();
+
+
+
+        // return ResponseEntity.ok().body(accountDataResponse);
     }
 
 }

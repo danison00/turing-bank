@@ -3,6 +3,7 @@ package dan.turingbank.model.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -43,10 +44,11 @@ public class Account implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "destination", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Deposit> deposits;
-
-    @ManyToMany
+    
+    
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "Favorites", joinColumns = @JoinColumn(name = "account_id_fk"), inverseJoinColumns = @JoinColumn(name = "favorite_id"))
-    private Set<Account> favorites;
+    private Set<FavoriteAccount> favorites;
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)

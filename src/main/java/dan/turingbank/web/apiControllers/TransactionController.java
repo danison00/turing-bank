@@ -44,6 +44,7 @@ public class TransactionController {
             Authentication authentication) throws Exception {
 
         String username = authentication.getPrincipal().toString();
+        System.out.println(transferDto + "  username->" + username);
 
         transferService.executeTransfer(mapper.fromTransactionDtoToTransaction(transferDto, username));
 
@@ -59,9 +60,9 @@ public class TransactionController {
 
         return ResponseEntity.ok().build();
     }
-     @GetMapping("/deposit/check")
-    public ResponseEntity<?> depositCheck(@RequestParam("accountNumber") String accountNumber) throws Exception {
 
+    @GetMapping("/deposit/check")
+    public ResponseEntity<?> depositCheck(@RequestParam("accountNumber") String accountNumber) throws Exception {
 
         var account = accountService.findByNumber(accountNumber);
 

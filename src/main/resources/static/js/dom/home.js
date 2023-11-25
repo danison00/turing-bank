@@ -68,47 +68,8 @@ function logout() {
 }
 
 export function openViewUserData() {
+
     window.location.hash = "/data-user";
-
-    // const divPrincipal = document.createElement('div');
-    // divPrincipal.classList.add('user-card-info');
-
-    // const divRangeBlack = document.createElement('div');
-    // divRangeBlack.classList.add('range-black');
-    // const divContentInfo = document.createElement('div');
-    // divContentInfo.classList.add('content-info');
-    // const informacoes = [
-    //     'Nome: ' + accountData.name,
-    //     'Cpf: ' + accountData.cpf,
-    //     'Email: ' + accountData.email,
-    //     'Telefone: ' + accountData.telephone,
-    //     'Numero da conta: ' + accountData.number,
-    //     'Data de abertura: ' + accountData.openingDate,
-    //     'Tipo de conta: Corrente'
-    // ];
-
-    // informacoes.forEach(info => {
-    //     const paragrafo = document.createElement('p');
-    //     const span = document.createElement('span');
-    //     span.textContent = info;
-    //     paragrafo.appendChild(span);
-    //     divContentInfo.appendChild(paragrafo);
-    // });
-    // const divContainerBtn = document.createElement('div');
-    // divContainerBtn.classList.add('container-btn');
-
-    // const btnVoltar = document.createElement('button');
-    // btnVoltar.classList.add('btn-back-home');
-    // btnVoltar.id = 'btn-back-home';
-    // btnVoltar.textContent = 'Voltar';
-    // btnVoltar.onclick = backHome;
-    // divContainerBtn.appendChild(btnVoltar);
-
-    // divPrincipal.appendChild(divRangeBlack);
-    // divPrincipal.appendChild(divContentInfo);
-
-
-
     addViewInCard2(generateViewUserData(accountData));
 
 
@@ -122,14 +83,14 @@ export function openViewExtrato() {
 
 }
 
-function addViewInCard2(html) {
+function addViewInCard2(tags) {
 
     const divCard2 = document.querySelector(".card2");
     while (divCard2.firstChild) {
         divCard2.removeChild(divCard2.firstChild);
     }
 
-    html.forEach(element => {
+    tags.forEach(element => {
         divCard2.appendChild(element);
     })
     document.getElementById("card2").checked = true;
@@ -139,6 +100,7 @@ export function backHome() {
     window.location.hash = "";
     document.getElementById("card1").checked = true;
 }
+
 
 
 document.addEventListener("DOMContentLoaded", function () {

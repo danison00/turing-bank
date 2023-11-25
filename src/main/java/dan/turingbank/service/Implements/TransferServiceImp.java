@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import dan.turingbank.model.entity.Account;
+import dan.turingbank.model.entity.FavoriteAccount;
 import dan.turingbank.model.entity.Transfer;
 import dan.turingbank.repository.TransferRepository;
 import dan.turingbank.service.interfaces.AccountService;
@@ -31,7 +32,9 @@ public class TransferServiceImp extends AbstractTransactionalService implements 
         }
 
         if (transfer.isSaveDestination()) {
-            origin.getFavorites().add(destination);
+
+
+            origin.getFavorites().add(new FavoriteAccount(destination.getNumber(), destination.getClient().getName()));
             accountService.update(origin);
         }
 
