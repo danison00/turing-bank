@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dan.turingbank.model.dto.AccountResponseDto;
 import dan.turingbank.model.dto.CreateAccountRequest;
 import dan.turingbank.model.entity.Account;
+import dan.turingbank.repository.FavoriteRepository;
 import dan.turingbank.service.interfaces.AccountService;
 import dan.turingbank.service.interfaces.CreateAccountService;
 import dan.turingbank.util.Mapper;
@@ -31,6 +32,9 @@ public class MyAccountController {
     @Autowired
     private Mapper mapper;
 
+    @Autowired
+    private FavoriteRepository favRep;
+
     @GetMapping
     public ResponseEntity<?> getDataAccount(Authentication authentication) throws Exception {
 
@@ -39,11 +43,8 @@ public class MyAccountController {
         AccountResponseDto accountDto = mapper.fromAccountToAccountResponseDto(a);
         System.out.println("data account send");
 
-        a = accountService.findByUsername("joao");
-        System.out.println(a.getFavorites());
-        a = accountService.findByUsername("danison");
-        System.out.println(a.getFavorites());
-
+       
+      
         return ResponseEntity.ok().body(accountDto);
     }
 

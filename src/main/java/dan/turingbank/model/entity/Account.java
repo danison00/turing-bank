@@ -48,7 +48,7 @@ public class Account implements Serializable {
     
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "Favorites", joinColumns = @JoinColumn(name = "account_id_fk"), inverseJoinColumns = @JoinColumn(name = "favorite_id"))
-    private Set<FavoriteAccount> favorites;
+    private Set<FavoriteAccount> favorites = new HashSet<>();
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)

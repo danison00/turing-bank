@@ -1,12 +1,16 @@
 package dan.turingbank.service.Implements;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import dan.turingbank.model.entity.Account;
 import dan.turingbank.model.entity.FavoriteAccount;
 import dan.turingbank.model.entity.Transfer;
+import dan.turingbank.repository.FavoriteRepository;
 import dan.turingbank.repository.TransferRepository;
 import dan.turingbank.service.interfaces.AccountService;
 import dan.turingbank.service.interfaces.TransferService;
@@ -19,6 +23,9 @@ public class TransferServiceImp extends AbstractTransactionalService implements 
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired 
+    private FavoriteRepository favRep;
 
     @Transactional
     @Override
@@ -33,8 +40,8 @@ public class TransferServiceImp extends AbstractTransactionalService implements 
 
         if (transfer.isSaveDestination()) {
 
-
-            origin.getFavorites().add(new FavoriteAccount(destination.getNumber(), destination.getClient().getName()));
+            origin = addFav(origin, destination);
+            
             accountService.update(origin);
         }
 
@@ -44,6 +51,23 @@ public class TransferServiceImp extends AbstractTransactionalService implements 
 
         tranferAmount(transfer);
 
+    }
+    public Account addFav(Account origin, Account destination){
+
+        Set<FavoriteAccount> favs = this.favRep.findFavoritesByAccountId(Long.valueOf(origin.getId()));
+        
+        boolean isFav = false;
+        for (FavoriteAccount fav : favs) {
+            if (fav.getNumber().equals(destination.getNumber())) {
+               
+               System.out.println("já é fav");
+                return origin;
+            }
+        }
+
+        System.out.println("adicionaou");
+        origin.getFavorites().add(new FavoriteAccount(destination.getNumber(), destination.getClient().getName()));
+        return origin;
     }
 
     @Transactional

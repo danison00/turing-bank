@@ -2,6 +2,8 @@ package dan.turingbank.util;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,9 +22,11 @@ import dan.turingbank.model.dto.TransferResponseDto;
 import dan.turingbank.model.entity.Account;
 import dan.turingbank.model.entity.Client;
 import dan.turingbank.model.entity.Deposit;
+import dan.turingbank.model.entity.FavoriteAccount;
 import dan.turingbank.model.entity.Roles;
 import dan.turingbank.model.entity.Transfer;
 import dan.turingbank.model.entity.User;
+import dan.turingbank.repository.FavoriteRepository;
 import dan.turingbank.service.interfaces.AccountService;
 import dan.turingbank.service.interfaces.UserService;
 
@@ -34,6 +38,9 @@ public class MapperImp implements Mapper {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private FavoriteRepository favRep;
 
     @Override
     public Account fromCreateAccountRequestToAccount(CreateAccountRequest createAcc) throws Exception {
@@ -101,7 +108,10 @@ public class MapperImp implements Mapper {
 
         account.getTransferSend().stream().forEach(
                 transfer -> transfersSend.add(fromTransferToTransferSendResponseDto(transfer)));
-        account.getFavorites().stream().forEach(
+
+        Set<FavoriteAccount> fav = this.favRep.findFavoritesByAccountId(account.getId());
+
+        new HashSet<>(fav).stream().forEach(
                 favorite -> favoritesAccounts
                         .add(new AccountFavoriteDto(favorite.getName(), favorite.getNumber())));
 

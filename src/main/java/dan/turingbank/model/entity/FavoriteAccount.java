@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,12 +33,19 @@ public class FavoriteAccount implements Serializable{
 
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "favorites", cascade = CascadeType.ALL)
-    private Set<Account> accounts;
+    private Set<Account> accounts = new HashSet<>();
 
     public FavoriteAccount(String number, String name) {
         this.number = number;
         this.name = name;
+    }
+
+    public FavoriteAccount(String number, String name, Set<Account> accounts) {
+        this.number = number;
+        this.name = name;
+        this.accounts = accounts;
     }
 
  
