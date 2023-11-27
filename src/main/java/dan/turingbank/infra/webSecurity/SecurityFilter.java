@@ -38,7 +38,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             throws ServletException, IOException, RuntimeException {
 
         String token = this.recoverToken(request);
-
+    
         if (token != null) {
 
             String username = tokenService.validateToken(token);
@@ -60,15 +60,13 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         Cookie[] cookies = request.getCookies();
 
-        if (cookies != null){
+        if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("token-acess"))
                     return cookie.getValue();
             }
         }
 
-
-    
         return null;
     }
 

@@ -30,13 +30,14 @@ public class SecurityConfig {
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                                 .authorizeHttpRequests(authorize -> authorize
-                                               .requestMatchers("/").permitAll()
-                                               .requestMatchers("/api-public/**").permitAll()
-                                                .requestMatchers("/api-public/**").permitAll()
-                                                .requestMatchers("/img/**", "/js/**", "/css/**", "/bootstrap-5.3.2-dist/**").permitAll()
+                                               .requestMatchers("/", "/home", "/templates/**").permitAll()
+                                               .requestMatchers("/api/public/**").permitAll()
+                                                .requestMatchers("/ng/**").permitAll()
                                                 .requestMatchers("/turing-bank", "/deposito", "/api/transaction/deposit/**", "/api/transaction/deposit").permitAll()
                                                 .requestMatchers("/criar-conta").permitAll()
                                                 .requestMatchers("/api/username-not-exists/**").permitAll()
+                                                .requestMatchers("/api/**").authenticated()
+                                        
                                                 //.requestMatchers("/home").permitAll()
                                                 // .requestMatchers(HttpMethod.DELETE, "/account").hasRole("USER")
                                                 // .requestMatchers(HttpMethod.POST, "/api/account").permitAll()
@@ -45,15 +46,9 @@ public class SecurityConfig {
                                                 // .requestMatchers("api/user/**").permitAll()
                                                 // .requestMatchers("/login").permitAll()
                                                 // .requestMatchers("/api/login").permitAll()
-                                                .anyRequest().authenticated())
-                                .formLogin(login -> login
-                                                .loginPage("/login") // Página de login
-                                                .defaultSuccessUrl("/home") // Página após o login bem-sucedido
-                                                .permitAll())
-                                .exceptionHandling(exception -> exception
-                                                .authenticationEntryPoint(
-                                                                (request, response, authException) -> response
-                                                                                .sendRedirect("/login")))
+                                                .anyRequest().permitAll())
+                                
+                               
 
                                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                                 .build();
