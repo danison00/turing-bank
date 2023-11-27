@@ -38,7 +38,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             throws ServletException, IOException, RuntimeException {
 
         String token = this.recoverToken(request);
-    
+
         if (token != null) {
 
             String username = tokenService.validateToken(token);
@@ -46,9 +46,21 @@ public class SecurityFilter extends OncePerRequestFilter {
             if (username != null) {
 
                 UserDetails user = userService.loadUserByUsername(username);
-                var userAuthentication = new UsernamePasswordAuthenticationToken(username, user, user.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(userAuthentication);
-                this.updateToken(request, response, user);
+
+                if (user != null) {
+
+                    var userAuthentication = new UsernamePasswordAuthenticationToken(username, user,
+                            user.getAuthorities());
+                    SecurityContextHolder.getContext().setAuthentication(userAuthentication);
+                    this.updateToken(request, response, user);
+                } else {
+                    System.out.println("aaaaaaa");
+                    Cookie[] cookies = cookieService.remove();
+                    response.addCookie(cookies[0]);
+                    response.addCookie(cookies[1]);
+                    throw new RuntimeException("username inválido");
+
+                }
             }
         }
 
