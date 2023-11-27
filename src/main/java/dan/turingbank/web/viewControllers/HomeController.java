@@ -7,17 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
     
-    @GetMapping("home")
+    @GetMapping(value = "/home")
     public String home(Authentication authentication){
-        return "home";
+        return "index";
+    }
+    @GetMapping({"/"})
+    public String raiz(Authentication authentication){
+        return "redirect:/home";
     }
 
-    @GetMapping("deposito")
-    public String deposito(Authentication authentication){
-        return "deposito";
-    }
-     @GetMapping("criar-conta")
-    public String createAccount(Authentication authentication){
-        return "criarConta";
-    }
 }

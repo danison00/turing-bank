@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping("api-public/account")
+@RequestMapping("api/public/account")
 public class CreateAccountController {
 
     @Autowired
@@ -41,9 +41,6 @@ public class CreateAccountController {
 
         return ResponseEntity.ok().build();
 
-
-
-        // return ResponseEntity.ok().body(accountDataResponse);
     }
 
 }

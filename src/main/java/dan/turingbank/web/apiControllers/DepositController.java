@@ -2,33 +2,22 @@ package dan.turingbank.web.apiControllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import dan.turingbank.model.dto.DepositCheckDto;
 import dan.turingbank.model.dto.DepositRequestDto;
-import dan.turingbank.model.dto.TransferRequestDto;
 import dan.turingbank.service.interfaces.AccountService;
 import dan.turingbank.service.interfaces.DepositService;
-import dan.turingbank.service.interfaces.TransferService;
 import dan.turingbank.util.Mapper;
 
-import jakarta.validation.Valid;
-
 @RestController
-@RequestMapping()
-@CrossOrigin(origins = "*")
-public class TransactionController {
-
-    @Autowired
-    private TransferService transferService;
+@RequestMapping("api/public/transaction/deposit")
+public class DepositController {
 
     @Autowired
     private DepositService depositService;
@@ -39,18 +28,21 @@ public class TransactionController {
     @Autowired
     private Mapper mapper;
 
-    @PostMapping("api/transaction/transfer")
-    public ResponseEntity<?> executeTransfer(@RequestBody @Valid TransferRequestDto transferDto,
-            Authentication authentication) throws Exception {
+    @PostMapping()
+    public ResponseEntity<?> deposit(@RequestBody DepositRequestDto depositDto) throws Exception {
 
-        String username = authentication.getPrincipal().toString();
-        System.out.println(transferDto + "  username->" + username);
+        System.out.println(depositDto.toString());
 
-        transferService.executeTransfer(mapper.fromTransactionDtoToTransaction(transferDto, username));
+        depositService.executeDeposit(mapper.fromDepositDtoToDeposit(depositDto));
 
         return ResponseEntity.ok().build();
     }
 
- 
+    @GetMapping("/check")
+    public ResponseEntity<?> depositCheck(@RequestParam("accountNumber") String accountNumber) throws Exception {
 
+        System.out.println("hgtftyf");
+        var account = accountService.findByNumber(accountNumber);
+        return ResponseEntity.ok().body(new DepositCheckDto(account.getClient().getName(), account.getNumber()));
+    }
 }

@@ -20,7 +20,7 @@ import dan.turingbank.service.interfaces.UserService;
 // import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/public")
 @CrossOrigin(origins = "*")
 public class UserController {
 

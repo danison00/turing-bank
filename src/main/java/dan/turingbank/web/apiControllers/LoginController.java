@@ -25,7 +25,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
-@RequestMapping("/api-public")
+@RequestMapping("/api/public/auth/login")
 public class LoginController {
 
     @Autowired
@@ -40,7 +40,7 @@ public class LoginController {
     @Autowired
     private ICookieService cookieService;
 
-    @PostMapping("/login")
+    @PostMapping()
     public ResponseEntity<?> login(@RequestBody LoginDto user, HttpServletResponse response) {
 
         System.out.println(user.toString());
@@ -61,16 +61,5 @@ public class LoginController {
         return ResponseEntity.ok().body(new LoginResponseDto(token));
     }
 
-    @GetMapping("/logout")
-    public ResponseEntity<?> logout(HttpServletResponse response) throws IOException {
-
-        Cookie[] cookies = cookieService.remove();
-
-        for (Cookie cookie : cookies)
-            response.addCookie(cookie);
-
-        System.out.println("logout");
-
-        return ResponseEntity.ok().build();
-    }
+    
 }
