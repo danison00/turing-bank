@@ -13,12 +13,13 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
-@RequestMapping("api/auth/logout")
+@RequestMapping("/api/auth/logout")
 public class LogoutController {
 
     @Autowired
     private ICookieService cookieService;
 
+    @GetMapping
     public ResponseEntity<?> logout(HttpServletResponse response) throws IOException {
 
         Cookie[] cookies = cookieService.remove();
