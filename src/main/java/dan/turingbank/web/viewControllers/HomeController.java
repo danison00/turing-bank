@@ -13,10 +13,10 @@ public class HomeController {
     public String home(Authentication authentication){
         return "index";
     }
-    @GetMapping({"/home/**"})
-    public String raiz(Authentication authentication){
-        return "redirect:/home";
-    }
+    // @GetMapping({"/home/**"})
+    // public String raiz(Authentication authentication){
+    //     return "redirect:/home";
+    // }
     @GetMapping("/login")
     public String login(Authentication authentication){
         return "redirect:/home";

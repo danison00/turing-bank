@@ -1,26 +1,19 @@
 package dan.turingbank.web.apiControllers;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import dan.turingbank.infra.cookieService.ICookieService;
 import dan.turingbank.infra.tokenJWT.TokenService;
 import dan.turingbank.model.dto.LoginDto;
 import dan.turingbank.model.dto.LoginResponseDto;
 import dan.turingbank.model.entity.User;
 import dan.turingbank.service.interfaces.UserService;
-
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -59,7 +52,5 @@ public class LoginController {
             response.addCookie(cookie);
 
         return ResponseEntity.ok().body(new LoginResponseDto(token));
-    }
-
-    
+    }    
 }

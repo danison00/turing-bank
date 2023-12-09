@@ -41,9 +41,6 @@ public class MyAccountController {
         String username = authentication.getPrincipal().toString();
         var a = accountService.findByUsername(username);
         AccountResponseDto accountDto = mapper.fromAccountToAccountResponseDto(a);
-        System.out.println("data account send");
-
-       
       
         return ResponseEntity.ok().body(accountDto);
     }

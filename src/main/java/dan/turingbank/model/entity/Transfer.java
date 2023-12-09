@@ -15,8 +15,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name="Tranfer")
 public class Transfer extends TransactionAbstract{
-
-
     
     @ManyToOne
     @JoinColumn(name="origin_id_fk")

@@ -3,7 +3,6 @@ package dan.turingbank.infra.webSecurity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,23 +29,22 @@ public class SecurityConfig {
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                                 .authorizeHttpRequests(authorize -> authorize
-                                               .requestMatchers("/", "/home", "/templates/**").permitAll()
-                                               .requestMatchers("/api/public/**").permitAll()
-                                                .requestMatchers("/ng/**").permitAll()
-                                                .requestMatchers("/turing-bank", "/deposito", "/api/transaction/deposit/**", "/api/transaction/deposit").permitAll()
-                                                .requestMatchers("/criar-conta").permitAll()
-                                                .requestMatchers("/api/username-not-exists/**").permitAll()
-                                                .requestMatchers("/api/**").authenticated()
-                                        
-                                                //.requestMatchers("/home").permitAll()
-                                                // .requestMatchers(HttpMethod.DELETE, "/account").hasRole("USER")
-                                                // .requestMatchers(HttpMethod.POST, "/api/account").permitAll()
-                                                // .requestMatchers("/transaction/deposit").permitAll()
-                                                // .requestMatchers("/transaction/transfer").hasRole("USER")
-                                                // .requestMatchers("api/user/**").permitAll()
-                                                // .requestMatchers("/login").permitAll()
-                                                // .requestMatchers("/api/login").permitAll()
-                                                .anyRequest().permitAll())
+                                        .requestMatchers("/", "/home", "/templates/**").permitAll()
+                                        .requestMatchers("/api/public/**").permitAll()
+                                        .requestMatchers("/ng/**").permitAll()
+                                        .requestMatchers("/turing-bank", "/deposito", "/api/transaction/deposit/**", "/api/transaction/deposit").permitAll()
+                                        .requestMatchers("/criar-conta").permitAll()
+                                        .requestMatchers("/api/username-not-exists/**").permitAll()
+                                        .requestMatchers("/api/**").authenticated()
+                                        // .requestMatchers("/home").permitAll()
+                                        // .requestMatchers(HttpMethod.DELETE, "/account").hasRole("USER")
+                                        // .requestMatchers(HttpMethod.POST, "/api/account").permitAll()
+                                        // .requestMatchers("/transaction/deposit").permitAll()
+                                        // .requestMatchers("/transaction/transfer").hasRole("USER")
+                                        // .requestMatchers("api/user/**").permitAll()
+                                        // .requestMatchers("/login").permitAll()
+                                        // .requestMatchers("/api/login").permitAll()
+                                        .anyRequest().permitAll())
                                 
                                
 
